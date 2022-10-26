@@ -5,7 +5,6 @@ window.addEventListener('load', function(){
     canvas.height = window.innerHeight;
     // canvas settings
     ctx.fillStyle = 'red';
-    //ctx.lineWidth = 10;
     ctx.lineCap = 'round';
     ctx.shadowColor = 'rgba(0,0,0,0.7)';
     ctx.shadowOffsetX = 10;
@@ -42,9 +41,6 @@ window.addEventListener('load', function(){
         updateSliders();
         drawFractal();
     });
-
-    //ctx.rotate(0.4);
-    //ctx.fillRect(0,0,canvas.width, canvas.height);
     
     function drawBranch(level){
         if(level > maxLevel) return;
@@ -70,7 +66,6 @@ window.addEventListener('load', function(){
         ctx.arc(0,size,size * 0.1,0,Math.PI * 2);
         ctx.fill();
     }
-    //drawBranch(0);
 
     function drawFractal(){
         ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -82,30 +77,18 @@ window.addEventListener('load', function(){
         for (let i=0; i < sides; i++){
             ctx.rotate((Math.PI * 2)/sides);
             drawBranch(0);
-
         }
         ctx.restore();
         randomizeButton.style.backgroundColor = color;
     }
     drawFractal();
-    /*
-    for (let i=0; i < sides; i++){
-        ctx.beginPath();
-        ctx.moveTo(0,0);
-        ctx.lineTo(size,0);
-        ctx.stroke();
-        ctx.rotate((Math.PI * 2)/sides);
-        
-    }
-    */
    
     function randomizeFractal(){
         sides = Math.floor(Math.random() * 7 + 2); // 2 to 9
         scale = Math.random() * 0.2 + 0.4; // .4 to .6
         spread = Math.random() * 2.9 + 0.1; // .1 to 3 radian
         color = 'hsl('+ Math.random() * 360 +', 100%, 50%)';
-        lineWidth = Math.floor(Math.random() * 20 + 10);
-        
+        lineWidth = Math.floor(Math.random() * 20 + 10);       
     }
     randomizeButton.addEventListener('click',function(){
         randomizeFractal();
@@ -128,7 +111,6 @@ window.addEventListener('load', function(){
 
     function updateSliders(){
         slider_spread.value = spread;
-        //label_spread.innerText = 'Spread: ' + spread;
         label_spread.innerText = 'Spread: ' + Number(spread).toFixed(1);
 
         slider_sides.value = sides;
